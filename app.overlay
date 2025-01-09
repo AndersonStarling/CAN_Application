@@ -1,0 +1,6 @@
+&can1
+{
+	status = "okay";
+	pinctrl-names = "default";
+	pinctrl-0 = <&can1_rx_pb8>;
+};
