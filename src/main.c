@@ -18,6 +18,9 @@ int main(void)
 {
     int ret = 0;
     can_mode_t can_mode_support;
+    can_mode_t can_current_mode;
+
+    printf("Hello\n");
 
     device = DEVICE_DT_GET_ONE(st_stm32_bxcan);
 
@@ -26,6 +29,18 @@ int main(void)
     {
         printf("can_mode_support = %d\n", can_mode_support);
     }
+
+    can_current_mode = can_get_mode(device);
+    printf("can_current_mode = %d", can_current_mode);
+
+    ret = can_set_mode(device, CAN_MODE_LOOPBACK);
+    if(0 == ret)
+    {
+        printf("can_set_mode successfully\n");
+    }
+
+    can_current_mode = can_get_mode(device);
+    printf("can_current_mode = %d\n", can_current_mode);
 
     ret = can_add_rx_filter(device, can_recv_call_back, NULL, &can_filter_user);
 
