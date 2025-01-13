@@ -11,6 +11,7 @@ struct can_filter can_filter_user =
 
 static void can_recv_call_back(const struct device *dev, struct can_frame *frame, void *user_data)
 {
+    printf("call back called\n");
     return;
 }
 
@@ -19,6 +20,7 @@ int main(void)
     int ret = 0;
     can_mode_t can_mode_support;
     can_mode_t can_current_mode;
+    struct can_frame can_message;
 
     printf("Hello\n");
 
@@ -30,9 +32,6 @@ int main(void)
         printf("can_mode_support = %d\n", can_mode_support);
     }
 
-    can_current_mode = can_get_mode(device);
-    printf("can_current_mode = %d", can_current_mode);
-
     ret = can_set_mode(device, CAN_MODE_LOOPBACK);
     if(0 == ret)
     {
@@ -42,7 +41,24 @@ int main(void)
     can_current_mode = can_get_mode(device);
     printf("can_current_mode = %d\n", can_current_mode);
 
+    ret = can_start(device);
+    if(0 == ret)
+    {
+        printf("can_start = %d\n", ret);
+    }
+
     ret = can_add_rx_filter(device, can_recv_call_back, NULL, &can_filter_user);
+    if(0 == ret)
+    {
+        printf("can_add_rx_filter = %d\n", ret);
+    }
+
+    ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
+    printf("can_send = %d\n", ret);
+    if(0 == ret)
+    {
+        printf("can_send = %d\n", ret);
+    }
 
     return 0;
 }
