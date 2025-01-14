@@ -4,7 +4,7 @@
 const struct device *device;
 struct can_filter can_filter_user =
 {
-    .id = 0xff,
+    .id = 0x123,
     .mask = 0xff,
     .flags = CAN_FILTER_IDE
 };
@@ -15,12 +15,26 @@ static void can_recv_call_back(const struct device *dev, struct can_frame *frame
     return;
 }
 
+static void can_send_call_back(const struct device *dev, int error, void *user_data)
+{
+    printf("send call back\n");
+    return;
+}
+
 int main(void)
 {
     int ret = 0;
     can_mode_t can_mode_support;
     can_mode_t can_current_mode;
-    struct can_frame can_message;
+
+    struct can_frame can_message = 
+    {
+        .id    = 0x123,
+        .dlc   = CAN_MAX_DLEN,
+        .data[0]  = 1,
+        .data[1]  = 2,
+        .flags = CAN_FRAME_IDE
+    };
 
     printf("Hello\n");
 
@@ -53,8 +67,7 @@ int main(void)
         printf("can_add_rx_filter = %d\n", ret);
     }
 
-    ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
-    printf("can_send = %d\n", ret);
+    ret = can_send(device, &can_message, K_FOREVER, can_send_call_back, NULL);
     if(0 == ret)
     {
         printf("can_send = %d\n", ret);
