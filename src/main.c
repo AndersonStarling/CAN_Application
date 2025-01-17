@@ -5,7 +5,7 @@ const struct device *device;
 struct can_filter can_filter_user =
 {
     .id = 0x123,
-    .mask = 0xff,
+    .mask = CAN_EXT_ID_MASK,
     .flags = CAN_FILTER_IDE
 };
 
@@ -67,7 +67,7 @@ int main(void)
         printf("can_add_rx_filter = %d\n", ret);
     }
 
-    ret = can_send(device, &can_message, K_FOREVER, can_send_call_back, NULL);
+    ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
     if(0 == ret)
     {
         printf("can_send = %d\n", ret);
