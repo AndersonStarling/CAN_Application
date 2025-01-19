@@ -12,6 +12,8 @@ struct can_filter can_filter_user =
 static void can_recv_call_back(const struct device *dev, struct can_frame *frame, void *user_data)
 {
     printf("call back called\n");
+    printf("frame data[0] = %d\n", frame->data[0]);
+    printf("frame data[1] = %d\n", frame->data[1]);
     return;
 }
 
@@ -35,8 +37,6 @@ int main(void)
         .data[1]  = 2,
         .flags = CAN_FRAME_IDE
     };
-
-    printf("Hello\n");
 
     device = DEVICE_DT_GET_ONE(st_stm32_bxcan);
 
