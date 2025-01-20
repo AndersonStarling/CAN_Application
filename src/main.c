@@ -2,6 +2,7 @@
 #include <zephyr/drivers/can.h>
 
 const struct device *device;
+
 struct can_filter can_filter_user =
 {
     .id = 0x123,
@@ -9,9 +10,19 @@ struct can_filter can_filter_user =
     .flags = CAN_FILTER_IDE
 };
 
+struct can_frame can_message = 
+{
+    .id    = 0x123,
+    .dlc   = CAN_MAX_DLEN,
+    .data[0]  = 1,
+    .data[1]  = 2,
+    .flags = CAN_FRAME_IDE
+};
+
+
 static void can_recv_call_back(const struct device *dev, struct can_frame *frame, void *user_data)
 {
-    printf("call back called\n");
+    printf("can_recv_call_back called\n");
     printf("frame data[0] = %d\n", frame->data[0]);
     printf("frame data[1] = %d\n", frame->data[1]);
     return;
@@ -28,15 +39,6 @@ int main(void)
     int ret = 0;
     can_mode_t can_mode_support;
     can_mode_t can_current_mode;
-
-    struct can_frame can_message = 
-    {
-        .id    = 0x123,
-        .dlc   = CAN_MAX_DLEN,
-        .data[0]  = 1,
-        .data[1]  = 2,
-        .flags = CAN_FRAME_IDE
-    };
 
     device = DEVICE_DT_GET_ONE(st_stm32_bxcan);
 
