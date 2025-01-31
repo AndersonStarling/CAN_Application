@@ -48,7 +48,7 @@ int CAN_device_init(void)
     can_device = DEVICE_DT_GET_ONE(st_stm32_bxcan);
 
     /* Set CAN operation mode */
-    ret = can_set_mode(device, CAN_OPERATION_MODE);
+    ret = can_set_mode(can_device, CAN_OPERATION_MODE);
     if(ret != 0)
     {
         return ret;
@@ -64,14 +64,14 @@ int CAN_device_init(void)
     return ret;
 }
 
-void CAN_device_add_recv_data_cb(CAN_data_struct_t * recv_data_cb)
+int CAN_device_add_recv_data_cb(CAN_data_struct_t * recv_data_cb)
 {
+    int ret = 0;
+
     /* Add CAN received message filter */
-    ret = can_add_rx_filter(device, CAN_device_recv_call_back, recv_data_cb, &can_filter_information);
-    if(ret != 0)
-    {
-        return ret;
-    }
+    ret = can_add_rx_filter(can_device, CAN_device_recv_call_back, recv_data_cb, &can_filter_information);
+
+    return ret;
 }
 
 

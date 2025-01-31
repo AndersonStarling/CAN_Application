@@ -9,7 +9,7 @@ typedef struct
 
 int CAN_device_init(void);
 
-void CAN_device_add_recv_data_cb(CAN_data_struct_t * recv_data_cb);
+int CAN_device_add_recv_data_cb(CAN_data_struct_t * recv_data_cb);
 
 #endif /* CAN_DEVICE_H */
 
