@@ -10,6 +10,7 @@ include_directories(
         "${CMAKE_CURRENT_LIST_DIR}/include"
         "${CMAKE_CURRENT_LIST_DIR}/src"
         "${CMAKE_CURRENT_LIST_DIR}/src/application_process/receive_process"
+        "${CMAKE_CURRENT_LIST_DIR}/src/application_process/gui_process"
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/CAN_device"
         "${CMAKE_CURRENT_LIST_DIR}/src/received_data"
 )
@@ -18,6 +19,7 @@ include_directories(
 file(GLOB SRC_FILE
         "${CMAKE_CURRENT_LIST_DIR}/src/*.c"
         "${CMAKE_CURRENT_LIST_DIR}/src/application_process/receive_process/*.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/application_process/gui_process/*.c"
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/CAN_device/*.c"
         "${CMAKE_CURRENT_LIST_DIR}/src/received_data/*.c"
         )
