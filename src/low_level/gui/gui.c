@@ -5,9 +5,6 @@
 #include <lvgl_mem.h>
 #include <lv_demos.h>
 #include <stdio.h>
-
-#define CONFIG_LV_USE_DEMO_MUSIC 1
-
 #include <lv_demo_music.h>
 
 void gui_handler(void)

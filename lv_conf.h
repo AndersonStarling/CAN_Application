@@ -19,6 +19,8 @@
 
 #include <stdint.h>
 
+#error "HI ____"
+
 /*====================
    COLOR SETTINGS
  *====================*/

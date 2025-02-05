@@ -7,6 +7,8 @@ project(can_project)
 
 set(LVGL_DIR ${ZEPHYR_LVGL_MODULE_DIR})
 
+target_compile_definitions(app PRIVATE LV_CONF_INCLUDE_SIMPLE=1)
+target_compile_definitions(app PRIVATE CONFIG_LV_USE_DEMO_MUSIC=1)
 
 target_sources_ifdef(CONFIG_LV_USE_DEMO_MUSIC app PRIVATE
     ${LVGL_DIR}/demos/music/lv_demo_music_list.c
@@ -93,8 +95,6 @@ include_directories(
         "${CMAKE_CURRENT_LIST_DIR}/src/received_data"
         "${LVGL_DIR}/demos/"
         "${LVGL_DIR}/demos/music"
-        "${LVGL_DIR}"
-        "${LVGL_DIR}/src"
 )
 
 # src file
