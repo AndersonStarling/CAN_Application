@@ -9,8 +9,9 @@ set(LVGL_DIR ${ZEPHYR_LVGL_MODULE_DIR})
 
 target_compile_definitions(app PRIVATE LV_CONF_INCLUDE_SIMPLE=1)
 target_compile_definitions(app PRIVATE CONFIG_LV_USE_DEMO_MUSIC=1)
+target_compile_definitions(app PRIVATE LV_USE_DEMO_MUSIC=1)
 
-target_sources_ifdef(CONFIG_LV_USE_DEMO_MUSIC app PRIVATE
+target_sources(app PRIVATE
     ${LVGL_DIR}/demos/music/lv_demo_music_list.c
     ${LVGL_DIR}/demos/music/lv_demo_music.c
     ${LVGL_DIR}/demos/music/lv_demo_music_main.c
@@ -108,6 +109,9 @@ file(GLOB SRC_FILE
         )
 
 target_sources(app PRIVATE ${SRC_FILE})
+
+# get_target_property(SOURCES app SOURCES)
+# message(STATUS "Source files for my_app: ${SOURCES}")
 
 
 

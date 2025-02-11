@@ -27,6 +27,10 @@ void gui_process_init(void)
                                 GUI_THREAD_PRIORITY, 0, K_FOREVER);
 }
 
+void gui_process_start(void)
+{
+    k_thread_start(thread_id);
+}
 
 void gui_thread(void * param1, void * param2, void * param3)
 {
@@ -34,6 +38,7 @@ void gui_thread(void * param1, void * param2, void * param3)
     {
         printf("gui thread is running\n");
         gui_handler();
+        k_msleep(1);
     }
 }
 
