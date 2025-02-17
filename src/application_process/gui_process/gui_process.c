@@ -3,12 +3,12 @@
 #include "gui_process.h"
 #include "gui.h"
 
-#define GUI_THREAD_STACK    2048
+#define GUI_THREAD_STACK    4096
 #define GUI_THREAD_PRIORITY 8
 
 extern void gui_thread(void *, void *, void *);
 
-K_THREAD_STACK_DEFINE(gui_thread_stack_size, GUI_THREAD_PRIORITY);
+K_THREAD_STACK_DEFINE(gui_thread_stack_size, GUI_THREAD_STACK);
 static struct k_thread gui_thread_data;
 
 static k_tid_t thread_id;
@@ -34,11 +34,15 @@ void gui_process_start(void)
 
 void gui_thread(void * param1, void * param2, void * param3)
 {
+    int a = 0;
+    int b = 0;
+    int c = 0;
+
     for(;;)
     {
         printf("gui thread is running\n");
         gui_handler();
-        k_msleep(1);
+        k_msleep(100);
     }
 }
 

@@ -10,7 +10,7 @@ uint8_t received_data[100] = {0};
 
 extern void receive_thread(void *, void *, void *);
 
-K_THREAD_STACK_DEFINE(receive_thread_stack_size, RECEIVE_THREAD_PRIORITY);
+K_THREAD_STACK_DEFINE(receive_thread_stack_size, RECEIVE_THREAD_STACK);
 struct k_thread receive_thread_data;
 
 k_tid_t thread_id;
