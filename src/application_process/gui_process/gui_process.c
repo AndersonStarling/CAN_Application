@@ -34,10 +34,6 @@ void gui_process_start(void)
 
 void gui_thread(void * param1, void * param2, void * param3)
 {
-    int a = 0;
-    int b = 0;
-    int c = 0;
-
     for(;;)
     {
         printf("gui thread is running\n");
