@@ -18,7 +18,7 @@ k_tid_t thread_id;
 
 void receive_process_init(void)
 {
-    /* init receive buffer */
+    /* init receive buffer */ 
     recv_data_init(&received_data[0], sizeof(received_data));
 
     /* init receive thread */
