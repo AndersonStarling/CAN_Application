@@ -4,7 +4,7 @@
 #include "recv_data.h"
 
 #define RECEIVE_THREAD_STACK    1024
-#define RECEIVE_THREAD_PRIORITY 10
+#define RECEIVE_THREAD_PRIORITY 8
 
 uint8_t received_data[100] = {0};
 

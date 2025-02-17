@@ -11,7 +11,7 @@ int main(void)
     gui_process_init();
 
     /* start receive thread */
-    // receive_process_start();
+    receive_process_start();
 
     /* start gui thread */
     gui_process_start();

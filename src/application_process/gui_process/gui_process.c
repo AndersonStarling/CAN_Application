@@ -4,7 +4,7 @@
 #include "gui.h"
 
 #define GUI_THREAD_STACK    4096
-#define GUI_THREAD_PRIORITY 8
+#define GUI_THREAD_PRIORITY 10
 
 extern void gui_thread(void *, void *, void *);
 
