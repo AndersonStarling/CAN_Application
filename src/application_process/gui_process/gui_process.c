@@ -36,7 +36,6 @@ void gui_thread(void * param1, void * param2, void * param3)
 {
     for(;;)
     {
-        printf("gui thread is running\n");
         gui_handler();
         k_msleep(100);
     }
