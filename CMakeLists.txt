@@ -94,6 +94,8 @@ include_directories(
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/CAN_device"
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/gui"
         "${CMAKE_CURRENT_LIST_DIR}/src/received_data"
+        "${CMAKE_CURRENT_LIST_DIR}/src/event_handler"
+        "${CMAKE_CURRENT_LIST_DIR}/src/test"
         "${LVGL_DIR}/demos/"
         "${LVGL_DIR}/demos/music"
 )
@@ -106,13 +108,9 @@ file(GLOB SRC_FILE
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/CAN_device/*.c"
         "${CMAKE_CURRENT_LIST_DIR}/src/low_level/gui/*.c"
         "${CMAKE_CURRENT_LIST_DIR}/src/received_data/*.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/event_handler/*.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/test/*.c"
         )
 
 target_sources(app PRIVATE ${SRC_FILE})
-
-# get_target_property(SOURCES app SOURCES)
-# message(STATUS "Source files for my_app: ${SOURCES}")
-
-
-
 

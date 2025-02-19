@@ -1,16 +1,16 @@
 #include <stdint.h>
+#include <zephyr/kernel.h>
+#include "receive_process.h"
+#include "recv_data.h"
+#include "event_handler.h"
 #include <zephyr/drivers/can.h>
 
-const struct device *device;
+#define TEST_CAN_THREAD_STACK    2048
+#define TEST_CAN_THREAD_PRIORITY 7
 
-struct can_filter can_filter_user =
-{
-    .id = 0x123,
-    .mask = CAN_EXT_ID_MASK,
-    .flags = CAN_FILTER_IDE
-};
+static const struct device *device;
 
-struct can_frame can_message = 
+static struct can_frame can_message = 
 {
     .id    = 0x123,
     .dlc   = CAN_MAX_DLEN,
@@ -19,60 +19,46 @@ struct can_frame can_message =
     .flags = CAN_FRAME_IDE
 };
 
+extern void test_can_thread(void *, void *, void *);
+static void receive_process_handle_data(void);
 
-static void can_recv_call_back(const struct device *dev, struct can_frame *frame, void *user_data)
+K_THREAD_STACK_DEFINE(test_can_thread_stack_size, TEST_CAN_THREAD_STACK);
+struct k_thread test_can_thread_data;
+static k_tid_t thread_id;
+
+void test_can_process_init(void)
 {
-    printf("can_recv_call_back called\n");
-    printf("frame data[0] = %d\n", frame->data[0]);
-    printf("frame data[1] = %d\n", frame->data[1]);
-    return;
+    /* init receive thread */
+    thread_id = k_thread_create(&test_can_thread_data, test_can_thread_stack_size,
+                                K_THREAD_STACK_SIZEOF(test_can_thread_stack_size),
+                                test_can_thread,
+                                NULL, NULL, NULL,
+                                TEST_CAN_THREAD_PRIORITY, 0, K_FOREVER);
 }
 
-static void can_send_call_back(const struct device *dev, int error, void *user_data)
+void test_can_process_start(void)
 {
-    printf("send call back\n");
-    return;
+    k_thread_start(thread_id);
 }
 
-int main(void)
+void test_can_thread(void * param1, void * param2, void * param3)
 {
     int ret = 0;
-    can_mode_t can_mode_support;
-    can_mode_t can_current_mode;
 
     device = DEVICE_DT_GET_ONE(st_stm32_bxcan);
 
-    ret = can_get_capabilities(device, &can_mode_support);
-    if(0 == ret)
+    for(;;)
     {
-        printf("can_mode_support = %d\n", can_mode_support);
-    }
+        ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
+        if(0 == ret)
+        {
+            printf("can_send = %d\n", ret);
+        }
 
-    ret = can_set_mode(device, CAN_MODE_LOOPBACK);
-    if(0 == ret)
-    {
-        printf("can_set_mode successfully\n");
-    }
+        can_message.data[0] ++;
+        can_message.data[0] = can_message.data[0] % 100;
 
-    can_current_mode = can_get_mode(device);
-    printf("can_current_mode = %d\n", can_current_mode);
-
-    ret = can_start(device);
-    if(0 == ret)
-    {
-        printf("can_start = %d\n", ret);
-    }
-
-    ret = can_add_rx_filter(device, can_recv_call_back, NULL, &can_filter_user);
-    if(0 == ret)
-    {
-        printf("can_add_rx_filter = %d\n", ret);
-    }
-
-    ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
-    if(0 == ret)
-    {
-        printf("can_send = %d\n", ret);
+        k_msleep(100);
     }
 
     return 0;

@@ -3,7 +3,6 @@
 
 void receive_process_init(void);
 void receive_process_start(void);
-k_event receive_process_get_event_handler(void);
 
 #endif /* RECEIVE_PROCESS_H */
 

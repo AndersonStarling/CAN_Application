@@ -2,6 +2,7 @@
 #include <zephyr/kernel.h>
 #include "gui_process.h"
 #include "gui.h"
+#include "event_handler.h"
 
 #define GUI_THREAD_STACK    4096
 #define GUI_THREAD_PRIORITY 10
@@ -34,8 +35,13 @@ void gui_process_start(void)
 
 void gui_thread(void * param1, void * param2, void * param3)
 {
+    uint32_t event_recv = 0;
+
     for(;;)
     {
+        /* receive all event then display to LCD */
+        event_recv = event_wait_global(0xFFFFFFFF, K_FOREVER);
+
         gui_handler();
         k_msleep(100);
     }
