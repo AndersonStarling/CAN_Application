@@ -13,14 +13,13 @@ static const struct device *device;
 static struct can_frame can_message = 
 {
     .id    = 0x123,
-    .dlc   = CAN_MAX_DLEN,
+    .dlc   = 2,
     .data[0]  = 1,
     .data[1]  = 2,
     .flags = CAN_FRAME_IDE
 };
 
 extern void test_can_thread(void *, void *, void *);
-static void receive_process_handle_data(void);
 
 K_THREAD_STACK_DEFINE(test_can_thread_stack_size, TEST_CAN_THREAD_STACK);
 struct k_thread test_can_thread_data;
@@ -53,6 +52,7 @@ void test_can_thread(void * param1, void * param2, void * param3)
         if(0 == ret)
         {
             printf("can_send = %d\n", ret);
+            printf("can_send %d\n", can_message.data[0]);
         }
 
         can_message.data[0] ++;
@@ -61,7 +61,6 @@ void test_can_thread(void * param1, void * param2, void * param3)
         k_msleep(100);
     }
 
-    return 0;
 }
 
 

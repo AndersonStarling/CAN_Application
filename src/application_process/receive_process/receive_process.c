@@ -9,7 +9,8 @@
 
 #define RECEIVE_PROCESS_EVENT_LOADING 0x01u
 
-static uint8_t received_data[100] = {0};
+/* 1 can frame have 8 byte data */
+static uint8_t received_data[8] = {0};
 
 extern void receive_thread(void *, void *, void *);
 
@@ -49,18 +50,8 @@ void receive_thread(void * param1, void * param2, void * param3)
 
 static void receive_process_handle_data(void)
 {
-    /* handle received data */
-    switch(received_data[0])
-    {
-        case 0:
-            /* send event to gui_process to display loading screen */
-            event_set_global(RECEIVE_PROCESS_EVENT_LOADING);
-            break;
-        default:
-            /* send event to gui_process to display received_data[0] km/h */
-            event_set_global(received_data[0]);
-            break;
-    }
+    printf("[receive_thread] receive_thread send %d\n", received_data[0]);
+    event_set_global(received_data[0]);
 }
 
 
