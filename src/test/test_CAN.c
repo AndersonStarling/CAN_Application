@@ -49,10 +49,9 @@ void test_can_thread(void * param1, void * param2, void * param3)
     for(;;)
     {
         ret = can_send(device, &can_message, K_FOREVER, NULL, NULL);
-        if(0 == ret)
+        if(0 != ret)
         {
-            printf("can_send = %d\n", ret);
-            printf("can_send %d\n", can_message.data[0]);
+            printf("can_send failed = %d\n", ret);
         }
 
         can_message.data[0] ++;
