@@ -42,8 +42,6 @@ void gui_thread(void * param1, void * param2, void * param3)
         /* receive all event then display to LCD */
         event_recv = event_wait_global(0xFFFFFFFF, K_FOREVER);
 
-        printf("[gui_thread] event_recv = %d\n", event_recv);
-
         gui_update_value(event_recv);
 
         gui_handler();

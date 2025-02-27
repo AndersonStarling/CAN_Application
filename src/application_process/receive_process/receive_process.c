@@ -50,7 +50,6 @@ void receive_thread(void * param1, void * param2, void * param3)
 
 static void receive_process_handle_data(void)
 {
-    printf("[receive_thread] receive_thread send %d\n", received_data[0]);
     event_set_global(received_data[0]);
 }
 

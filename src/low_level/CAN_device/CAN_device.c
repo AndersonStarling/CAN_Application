@@ -37,8 +37,6 @@ static void CAN_device_recv_call_back(const struct device *dev, struct can_frame
         }
     }
 
-    printf("CAN_device_recv_call_back receive %d\n", recv_data->data[0]);
-
     return;
 }
 
