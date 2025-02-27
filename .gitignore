@@ -1,1 +1,11 @@
 /build
+/src/low_level/gui/gui_design/import
+/src/low_level/gui/gui_design/lib
+/src/low_level/gui/gui_design/lvgl
+/src/low_level/gui/gui_design/lvgl-simulator
+/src/low_level/gui/gui_design/ports
+/src/low_level/gui/gui_design/temp
+/src/low_level/gui/gui_design/*.txt
+/src/low_level/gui/gui_design/*.guiguider
+
+
