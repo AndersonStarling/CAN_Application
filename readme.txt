@@ -8,6 +8,8 @@
 
 2. History
 20-1-2025: Test CAN loop back mode successfully in stm32f746
+27-2-2025: Build GUI successfully
+
 
 
 
