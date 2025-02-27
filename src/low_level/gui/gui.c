@@ -8,6 +8,11 @@
 
 lv_ui guider_ui;
 
+void gui_update_value(int32_t value)
+{
+	custom_update_speed(value);
+}
+
 void gui_handler(void)
 {
     uint32_t sleep_ms = lv_task_handler();

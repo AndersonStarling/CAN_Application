@@ -16,6 +16,7 @@ extern "C" {
 #include "gui_guider.h"
 
 void custom_init(lv_ui *ui);
+void custom_update_speed(int32_t speed_value);
 
 void speed_meter_timer_cb(lv_timer_t * t);
 void record_chart_timer_cb(lv_timer_t * t);

@@ -31,7 +31,7 @@
  *  STATIC VARIABLES
  **********************/
 static int32_t speed = 0;
-static bool is_increase = true;
+
 
 static int16_t spd_chart[CHART1_POINTS] = {0};
 static bool is_up = true;
@@ -45,6 +45,11 @@ void custom_init(lv_ui *ui)
     /* Add your codes here */
 }
 
+void custom_update_speed(int32_t speed_value)
+{
+    speed = speed_value;
+}
+
 /**********************
  *  STATIC FUNCTIONS
  **********************/
@@ -53,18 +58,11 @@ void speed_meter_timer_cb(lv_timer_t * t)
 {
     lv_ui * gui = t->user_data;
 
-    if(speed >= 110) is_increase = false;
-    if(speed <= 70) is_increase = true;
+    
 
     lv_meter_set_indicator_value(gui->speed_meter_board, gui->speed_meter_board_scale_0_ndline_0, speed);
     lv_label_set_text_fmt(gui->speed_label_digit, "%"LV_PRId32, speed);
-    if(is_increase)
-    {
-        speed ++;
-    }else
-    {
-        speed --;
-    }
+
 }
 
 void record_chart_timer_cb(lv_timer_t * t)

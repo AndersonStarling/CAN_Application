@@ -44,6 +44,8 @@ void gui_thread(void * param1, void * param2, void * param3)
 
         printf("[gui_thread] event_recv = %d\n", event_recv);
 
+        gui_update_value(event_recv);
+
         gui_handler();
         k_msleep(100);
     }
