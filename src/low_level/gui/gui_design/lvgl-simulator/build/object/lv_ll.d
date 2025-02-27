@@ -1,0 +1,23 @@
+build/object/lv_ll.o: \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_ll.c \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_ll.h \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_mem.h \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\lv_conf_internal.h \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\lv_conf_kconfig.h \
+ D:/zephyr/zephyrproject/zephyr/app/can_application/src/low_level/gui/gui_design/lvgl-simulator/lv_conf.h \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\custom\lv_conf_ext.h \
+ d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_types.h
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_ll.h:
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_mem.h:
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\lv_conf_internal.h:
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\lv_conf_kconfig.h:
+
+D:/zephyr/zephyrproject/zephyr/app/can_application/src/low_level/gui/gui_design/lvgl-simulator/lv_conf.h:
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\custom\lv_conf_ext.h:
+
+d:\zephyr\zephyrproject\zephyr\app\can_application\src\low_level\gui\gui_design\lvgl\src\misc\lv_types.h:

@@ -1,0 +1,1 @@
+GEN_CSRCS += lv_font_arial_22.c lv_font_arial_18.c lv_font_arial_13.c lv_font_arial_15.c lv_font_arial_11.c lv_font_arial_14.c lv_font_arial_12.c lv_font_SourceHanSerifSC_Regular_11.c lv_font_SourceHanSerifSC_Regular_12.c lv_font_arial_30.c lv_font_ArchitectsDaughter_13.c

@@ -1,0 +1,1 @@
+GEN_CSRCS += _NXP_Logo_60x29.c
